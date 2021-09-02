@@ -14,7 +14,7 @@ void init(long double (*f)(long double), long double xi, long double xf){
         los elementos f0[i] el valor de la red; f0[0] = xi && f0[len(f0)] = xf
     */    
    int i = 0;
-   while (i < 100){
+   while (i < 1000){
         f0[i] = (*f)(xi);
         i = i + 1;
         xi = xi + ((xf-xi)/1000)*i;
@@ -37,8 +37,6 @@ void der(){
 
 
 int main(){
-    init(std::cos, 0.0, 100.0);
-    //std::cout << f0[0] << std::endl;
     return 0;
 }
 

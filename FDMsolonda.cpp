@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 std::vector<long double> f0; 
 std::vector<long double> F0;

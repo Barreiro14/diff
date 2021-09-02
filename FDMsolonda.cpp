@@ -2,8 +2,10 @@
 #include <vector>
 #include <cmath>
 
-std::vector<long double> f0; 
-std::vector<long double> F0;
+//std::vector<long double> f0; 
+//std::vector<long double> F0;
+long double f0[1000];
+long double F0[1000];
 
 void init(long double (*f)(long double), long double xi, long double xf){
     /*
@@ -12,30 +14,31 @@ void init(long double (*f)(long double), long double xi, long double xf){
         los elementos f0[i] el valor de la red; f0[0] = xi && f0[len(f0)] = xf
     */    
    int i = 0;
-   while (xi <= xf){
-       f0[i] = (*f)(xi);
-       i = i + 1;
-       xi = xi + ((xf-xi)/1000)*i;
+   while (i < 100){
+        f0[i] = (*f)(xi);
+        i = i + 1;
+        xi = xi + ((xf-xi)/1000)*i;
    }    
-
 }
 
-void der(int i){
+void der(){
     /*
         Esta funcion asigna el valor aproximado de la derivada en 
     */
-    if (i == 0){
-        //definir para los bordes
-    }else if (i == f0.size()){
-        //definir para los bordes
-    }else{
+    F0[0] = 2.0*f0[1] - 1.5*f0[0] - 0.5*f0[2];
+    
+    F0[sizeof(f0) - 1] = 0.5*f0[sizeof(f0) - 3] - 2.0*f0[sizeof(f0) - 2] + 1.5*f0[sizeof(f0) - 1];
+    int i = 0;
+    while(i < sizeof(f0) - 1){
         F0[i] = (f0[i + 1] - f0[i - 1])/2;
+        i = i + 1;
     }
 }
 
 
 int main(){
-    //std::cout << f0[1] << std::endl;
+    init(std::cos, 0.0, 100.0);
+    //std::cout << f0[0] << std::endl;
     return 0;
 }
 

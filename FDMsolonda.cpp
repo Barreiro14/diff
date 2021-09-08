@@ -63,7 +63,7 @@ void Sder(int i){
 */
 int main(){
     long double F0[1000];
-    init(std::cos, 0.0, 2*M_PI_4);
+    init(std::cos, 0.0, 6*M_PI_4);
     base(0.0, 2*M_PI_4);
     std::ofstream file;
     int i = 0;
@@ -96,7 +96,7 @@ int main(){
     }
     */
    
-    std::cout <<  f0[0] << std::endl;
+    //std::cout <<  f0[0] << std::endl;
     //std::cout << f0[999] << std::endl;
     //std::cout << der(der(f0, (f0[999]-f0[0])/1000), (f0[999]-f0[0])/1000)[0] << std::endl;
     //std::cout << der(f0, 0.0001)[999] << std::endl;

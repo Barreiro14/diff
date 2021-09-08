@@ -1,10 +1,12 @@
 #include <iostream>
-#include <vector>
+#include <string>
+#include <fstream>
 #include <cmath>
 
 //std::vector<long double> f0; 
 //std::vector<long double> F0;
 long double f0[1000];
+long double x[1000];
 //long double F0[1000];
 //long double G0[1000];
 
@@ -20,6 +22,15 @@ void init(long double (*f)(long double), long double xi, long double xf){
         i = i + 1;
         xi = xi + ((xf-xi)/999)*i;
    }    
+}
+
+void base(long double xi, long double xf){
+    int i = 0;
+    while (i < 1000){
+        x[i] = xi;
+        i = i + 1;
+        xi = xi + ((xf-xi)/999)*i;
+    }
 }
 
 long double *der(long double arr[1000], double dx){
@@ -53,6 +64,24 @@ void Sder(int i){
 */
 int main(){
     init(std::cos, 0.0, 2*M_PI_4);
+    base(0.0, 2*M_PI_4);
+    std::ofstream file;
+    int i = 0;
+    int j = 0;
+    file.open ("f0.dat");
+    while (i < 1000){
+        file << f0[i] << std::endl;
+        i = i + 1;
+
+    }
+    file.close();
+    file.open ("x.dat");
+    while (j < 1000){
+        file << x[j] << std::endl;
+        j = j + 1;
+
+    }
+    file.close();
     double dx = (f0[999]-f0[0])/1000;
     /*
     int i = 0;

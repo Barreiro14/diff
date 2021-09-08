@@ -33,11 +33,10 @@ void base(long double xi, long double xf){
     }
 }
 
-long double *der(long double arr[1000], double dx){
+long double *der(long double arr[1000], long double F0[1000], double dx){
     /*
         Esta funcion asigna el valor aproximado de la derivada en 
     */
-   long double F0[1000];
     F0[0] = (2.0*arr[1] - 1.5*arr[0] - 0.5*arr[2])/dx;
     F0[999] = (0.5*f0[997] - 2.0*f0[998] + 1.5*f0[999])/dx;
     int i = 1;
@@ -63,6 +62,7 @@ void Sder(int i){
 }
 */
 int main(){
+    long double F0[1000];
     init(std::cos, 0.0, 2*M_PI_4);
     base(0.0, 2*M_PI_4);
     std::ofstream file;

@@ -25,6 +25,10 @@ void init(long double (*f)(long double), long double xi, long double xf){
 }
 
 void base(long double xi, long double xf){
+    /*
+    Esta funcion genera todos los puntos de x desde xi hasta xf en intervalos iguales
+    se usa para graficar
+    */
     int i = 0;
     while (i < 1000){
         x[i] = xi;
@@ -35,7 +39,8 @@ void base(long double xi, long double xf){
 
 long double *der(long double arr[1000], long double F0[1000], double dx){
     /*
-        Esta funcion asigna el valor aproximado de la derivada en 
+        Esta funcion asigna el valor aproximado de la derivada en xi en termino de los puntos de su alrededor.
+        note: dx funciona mejor (por alguna razon) cuando es negativo y un numero "grande"
     */
     F0[0] = (2.0*arr[1] - 1.5*arr[0] - 0.5*arr[2])/dx;
     F0[999] = (0.5*f0[997] - 2.0*f0[998] + 1.5*f0[999])/dx;
@@ -46,35 +51,15 @@ long double *der(long double arr[1000], long double F0[1000], double dx){
     }
     return F0;
 }
-/*
-void Sder(int i){
-   if (i == 0){
-    G0[0] = 2.0*F0[1] - 1.5*F0[0] - 0.5*F0[2];
-   } else if (i == 999){ 
-    G0[999] = 0.5*F0[997] - 2.0*F0[998] + 1.5*F0[999];
-   } else{
-        int i = 1;
-        while(i < 999){
-            G0[i] = (F0[i + 1] - F0[i - 1])/2;
-            i = i + 1;
-        }
-    }
-}
-*/
 int main(){
     long double F0[1000];
     init(std::cos, 0.0, 6*M_PI_4);
-    base(0.0, 2*M_PI_4);
+    base(0.0, 6*M_PI_4);
+    der(f0, F0, -10);
     std::ofstream file;
     int i = 0;
     int j = 0;
-    file.open ("f0.dat");
-    while (i < 1000){
-        file << f0[i] << std::endl;
-        i = i + 1;
-
-    }
-    file.close();
+    int k = 0;
     file.open ("x.dat");
     while (j < 1000){
         file << x[j] << std::endl;
@@ -82,24 +67,19 @@ int main(){
 
     }
     file.close();
-    double dx = (f0[999]-f0[0])/1000;
-    /*
-    int i = 0;
-    int j = 0;
+    file.open ("f0.dat");
     while (i < 1000){
-        der(i);
+        file << f0[i] << std::endl;
         i = i + 1;
+
     }
-    while (j < 1000){
-        der(j);
-        j = j + 1;
+    file.close();
+    file.open("f1.dat");
+    while(k < 1000){
+        file << F0[k] << std::endl;
+        k = k + 1;
     }
-    */
-   
-    //std::cout <<  f0[0] << std::endl;
-    //std::cout << f0[999] << std::endl;
-    //std::cout << der(der(f0, (f0[999]-f0[0])/1000), (f0[999]-f0[0])/1000)[0] << std::endl;
-    //std::cout << der(f0, 0.0001)[999] << std::endl;
+    double dx = (f0[999]-f0[0])/1000;
     return 0;
 }
 

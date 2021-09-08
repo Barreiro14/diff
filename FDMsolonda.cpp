@@ -3,12 +3,8 @@
 #include <fstream>
 #include <cmath>
 
-//std::vector<long double> f0; 
-//std::vector<long double> F0;
 long double f0[1000];
 long double x[1000];
-//long double F0[1000];
-//long double G0[1000];
 
 void init(long double (*f)(long double), long double xi, long double xf){
     /*

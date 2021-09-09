@@ -11,6 +11,7 @@ import matplotlib.patches as mpatches
 x = open("x.dat", "r") 
 f0 = open("f0.dat", "r")
 f1 = open("f1.dat", "r")
+#f2 = open("f2.dat", "r")
 
 '''
     Esta parte convierte la data encontrada en los archivos temporales en numpy arrays los cuales
@@ -19,6 +20,7 @@ f1 = open("f1.dat", "r")
 x = np.loadtxt(x)
 f0 = np.loadtxt(f0)
 f1 = np.loadtxt(f1)
+#f2 = np.loadtxt(f2)
 f = [f1] #este array toma la data que sera graficada para poder hacer loops sobre ella
 '''
     Esta parte solo usa las funciones plot y show de matplotlib para graficar la data obtenida,

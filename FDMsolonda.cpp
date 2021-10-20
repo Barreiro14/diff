@@ -77,7 +77,6 @@ int main(){
         file << G0[k]*dt*dt/4 << std::endl;
         k = k + 1;
     }
-
     
     double dx = (f0[999]-f0[0])/1000;
     return 0;

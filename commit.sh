@@ -1,8 +1,8 @@
 git status
 git add *
 git status
-echo "Klk con este commit?"
+echo "klk con este commit?"
 read commitname
 git commit -m $commitname
-git push -u origin main 
+git push -u origin main
 
